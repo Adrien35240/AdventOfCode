@@ -9,7 +9,8 @@ fn main() {
     let reader = BufReader::new(file);
 
     let mut results: Vec<i32> = Vec::new();
-        results.push(0);
+
+    results.push(0);
     // On parcourt chaque ligne du fichier
     for line in reader.lines() {
         let line = line.unwrap();
@@ -25,6 +26,13 @@ fn main() {
     println!("results : {:?}",results);
     // On récupère l'index de la valeur la plus élevée du tableau
     let max_index = results.iter().enumerate().max_by_key(|(_, val)| *val).unwrap().0;
-    println!("resultat : {}",results[max_index]);
+    println!("resultat part1 : {}",results[max_index]);
+
+    results.sort_unstable_by(|a,b| b.cmp(a));
+    let mut result: i32 = 0;
+    for i in 0..3 {
+        result += results[i];
+    }
+    println!("resultat part2 :{}",result)
 }
 
