@@ -9,7 +9,7 @@ fn main() {
     let reader = BufReader::new(file);
 
     let mut results: Vec<i32> = Vec::new();
-        results.push(1);
+        results.push(0);
     // On parcourt chaque ligne du fichier
     for line in reader.lines() {
         let line = line.unwrap();
@@ -17,13 +17,12 @@ fn main() {
         if !line.is_empty() {
             *results.last_mut().unwrap() += line.parse::<i32>().unwrap();
         } else {
-            println!("line empty");
             // Si la ligne est vide, on ajoute une nouvelle valeur vide au tableau
             results.push(0);
         }
     }
+    // on affiche le vec de tous les resultats 
     println!("results : {:?}",results);
-
     // On récupère l'index de la valeur la plus élevée du tableau
     let max_index = results.iter().enumerate().max_by_key(|(_, val)| *val).unwrap().0;
     println!("resultat : {}",results[max_index]);
